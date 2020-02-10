@@ -21,7 +21,7 @@ export default createGlobalStyle`
 
   body {
     background: no-repeat center fixed ;
-    background-image: linear-gradient(to bottom,rgba(16, 93, 212, 0.36),rgba(185, 21, 21, 0.24)),url(/static/media/swbg.814141dd.jpg);;
+    background-image: linear-gradient(to bottom,rgba(16, 93, 212, 0.36),rgba(185, 21, 21, 0.24)),url(${swbg});;
     background-size: cover;
   }
 
