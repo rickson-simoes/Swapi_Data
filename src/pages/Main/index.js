@@ -1,43 +1,87 @@
 import React, { Component } from 'react';
 import { PrincipalBox, NextButton } from './styles';
 
-// https://swapi.co/api/planets/?search=alderaan
+import api from '../../services/api';
 
 export default class Main extends Component {
   state = {
     novaData: [],
+    loading: false,
   };
 
-  handleSubmit = e => {
-    e.preventDefault();
+  componentDidMount() {
+    this.handleSubmit();
+  }
 
-    console.log('ta ok');
+  handleSubmit = async () => {
+    this.setState({ loading: true });
+
+    const planets = [
+      'Alderaan',
+      'Yavin IV',
+      'Hoth',
+      'Dagobah',
+      'Bespin',
+      'Endor',
+      'Naboo',
+      'Coruscant',
+      'Kamino',
+      'Geonosis',
+      'Utapau',
+      'Mustafar',
+      'Kashyyyk',
+      'Polis Massa',
+      'Mygeeto',
+    ];
+    const randomPlanets = planets[Math.floor(Math.random() * planets.length)];
+
+    const response = await api.get(`/?search=${randomPlanets}`);
+
+    this.setState({
+      novaData: [response.data.results[0]],
+      loading: false,
+    });
   };
 
   render() {
+    const { loading, novaData } = this.state;
+
     return (
       <PrincipalBox>
         <div>
-          <h1>Planet Name</h1>
+          {novaData.map(planets => (
+            <main key={planets.rotation_period}>
+              <h1 key={planets.name}>{planets.name}</h1>
 
-          <ul>
-            <li>
-              <label>Population</label> <span>20000</span>
-            </li>
-            <li>
-              <label>Climate</label> <span>Arido</span>
-            </li>
-            <li>
-              <label>Terrain</label> <span>Well ok</span>
-            </li>
+              <ul>
+                <li>
+                  <label>Population: </label>
+                  <span key={planets.population}>{planets.population}</span>
+                </li>
 
-            <li>
-              Featured in <b>8</b> films
-            </li>
-          </ul>
+                <li>
+                  <label>Climate: </label>
+                  <span key={planets.climate}>{planets.climate}</span>
+                </li>
+
+                <li>
+                  <label>Terrain: </label>
+                  <span key={planets.terrain}>{planets.terrain}</span>
+                </li>
+
+                <li>
+                  Featured in
+                  <b key={planets.films.length}> {planets.films.length}</b> film
+                  {planets.films.length > 1 ? 's' : ''}
+                </li>
+              </ul>
+            </main>
+          ))}
         </div>
 
-        <NextButton onClick={this.handleSubmit}> Next </NextButton>
+        <NextButton loading={loading ? 1 : 0} onClick={this.handleSubmit}>
+          {loading ? 'Carregando SWApi...' : 'Next'}
+        </NextButton>
       </PrincipalBox>
     );
   }

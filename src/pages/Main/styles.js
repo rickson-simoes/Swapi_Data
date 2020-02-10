@@ -63,7 +63,9 @@ export const PrincipalBox = styled.div`
   }
 `;
 
-export const NextButton = styled.button`
+export const NextButton = styled.button.attrs(props => ({
+  disabled: props.loading,
+}))`
   margin: auto;
   margin-top: 30px;
   border: none;
@@ -83,5 +85,10 @@ export const NextButton = styled.button`
     color: white;
     padding: 10px 50px;
     box-shadow: 1px 1px 7px 5px #3b3beca8;
+  }
+
+  &[disabled] {
+    cursor: not-allowed;
+    opacity: 0.6;
   }
 `;
