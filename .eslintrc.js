@@ -31,6 +31,7 @@ module.exports = {
       'warn',
       {extensions: ['.jsx', '.js']}
     ],
-    'import/prefer-default-export' : 'off'
+    'import/prefer-default-export' : 'off',
+    'jsx-a11y/label-has-associated-control' : 'off'
   },
 };
