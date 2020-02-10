@@ -4,6 +4,9 @@
 
 </h1>
 
+##O que é? 
+Uma aplicação em ReactJS onde exibe um planeta aleatório do star wars e exibe suas informações.
+
 ### Tutorial
 
 **Dentro da pasta do Projeto:**
