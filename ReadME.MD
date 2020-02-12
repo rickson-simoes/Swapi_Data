@@ -4,7 +4,7 @@
 
 </h1>
 
- Aplicação em ReactJS onde exibe um planeta aleatório do star wars e exibe suas informações.
+ Aplicação em ReactJS onde exibe um planeta aleatório do star wars e suas informações.
 
 ### Tutorial
 
